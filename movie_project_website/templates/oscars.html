@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Can machine learning predict Oscar winners?">
+  <meta name="author" content="Final Group Project">
+
+  <title>Oscar Predictions</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles -->
+  <link href="static/css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Machine Learning - Final Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="oscars">Oscar Predictions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Movie Search
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="visualizations">Movie Visualizations</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row align-items-center my-5">
+      <div class="col-lg-12">
+        
+        <!-- TITLE & DESCRIPTION -->
+        <h1 class="font-weight-light" style="text-align:center">Can Machine Learning Predict Oscar Winners?</h1>
+        <p style="text-align:center">Based off of a compilation of past years data, this model uses machine learning to predict if a movie will win an award based off of it’s details.</p>
+        <br>
+      </div>
+    </div>
+      <!-- ROW OF GIFS -->
+      <div class="row align-items-center my-5">
+          <!-- GIF1 -->
+          <div class="col-lg-4" style="text-align:center;">
+              <img src="https://66.media.tumblr.com/4be78acaa9054bce4d5ab54f1f47b3d1/tumblr_ni2wyqeqxO1qh9nffo1_500.gif"style="height:210px;">      
+          </div>
+          <!-- GIF2 -->
+          <div class="col-lg-4" style="text-align:center;">
+              <img src="https://media.giphy.com/media/26gs8Ol1XgE5QLPkQ/giphy.gif"style="height:210px;">    
+            </div>
+            <!-- GIF3 -->
+          <div class="col-lg-4" style="text-align:center;">
+              <img src="https://media.giphy.com/media/OrPLUZLmNKeUo/giphy.gif"style="height:210px;">
+            </div>
+        </div>
+      <!-- GRAPH ROW -->
+
+      <!-- NEW ROW -->
+      <div class="row align-items-center my-5">
+        <div class="col-lg-2" style="text-align:center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Oscarestatuilla.png" alt="An actual oscar that we won for this project" style="height:210px;">
+        </div>
+        <div class="col-lg-10">
+          <h2 class="font-weight-light" style="text-align:center">How does it work?</h2>
+          <p style="text-align:center">This model is based on thousands of movies scraped from the OMDB API and their details, i.e. director, actors, production, company, ratings, genre, and more. We chose to merge this dataframe with supplementary data including box office sales, oscar wins, and oscar nominations to determine which components would be able to predict if a movie would win an oscar.</p>
+        </div>
+      </div>
+   
+
+    <div class="row">
+      <div class="col-md-5" id="movie-info">
+        <div id="box-office-vs-month"></div>
+        <!-- TABLE START -->
+        <!-- Confusion matrix Div --><div class="confusion-matrix-1" style="text-align:center;">
+        <h3 style="text-align:center; margin-bottom:10px;">Confusion Matrix: Decision Tree</h3>
+          <table border="1" class="table table-striped" style="margin-left:auto;margin-right:auto; <!-- margin-bottom:550px; -->">
+              <thead class="thead-dark">
+              <tr style="text-align: right;">
+                <th></th>
+                <th>Predicted NO</th>
+                <th>Predicted YES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Actual NO</th>
+                <td>513</td>
+                <td>31</td>
+              </tr>
+              <tr>
+                <th>Actual YES</th>
+                <td>33</td>
+                <td>25</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- TABLE END -->
+        
+          <div id="blob" style="margin-top:14%;"></div> <!-- DIV FOR PLOT 1 -->
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script src="{{ url_for('static', filename='js/oscars/plots.js') }}"></script>
+          </div>
+
+
+      <!-- </div> -->
+      <!-- 2nd section -->
+      <div class="col-md-5" id="movie-info">
+        <div id="box-office-vs-rating""></div>
+        <!-- TABLE START -->
+        <h3 style="text-align:center; margin-bottom:10px;">Composition of an Oscar</h3>
+        <div class="coefficient-table">
+            <table border="1" class="table table-striped" style="margin-left:auto;margin-right:auto; <!-- margin-bottom:550px; -->">
+                <thead class="thead-dark">
+                <tr style="text-align: right;">
+                <th></th>
+                <th>Percent Accuracy</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Linear Regression</th>
+                    <td>11.02%</td>
+                  </tr>
+              <tr>
+                <th>Decision Tree</th>
+                <td>88.70%</td>
+              </tr>
+              <tr>
+                <th>Random Forest</th>
+                <td>93.18%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- TABLE END -->
+      
+        <div id="plot" style="min-width: 700px; height: 400px; max-width: 800px; margin: 0 auto"></div> <!-- THIS IS WHERE A PLOT GOES -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="{{ url_for('static', filename='js/oscars/PieChart1.js') }}"></script>
+      </div>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Group 2, Cal Berkeley Data Analytics Bootcamp 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+</body>
+
+</html>
