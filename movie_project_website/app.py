@@ -126,5 +126,9 @@ def visalizations_page():
 def oscars():
     return render_template("oscars.html")
 
+@app.route("/oscar-visual")
+def oscarvisual():
+    return render_template("oscar-visual.html")
+
 if __name__ == "__main__":
     app.run()
